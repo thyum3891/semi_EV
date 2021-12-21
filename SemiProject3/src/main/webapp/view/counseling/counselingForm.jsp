@@ -4,8 +4,7 @@
     pageEncoding="UTF-8"%>
     
     <%
-    	Date sysDate = new Date();
-    	int nowDate = sysDate.getDate();
+    	
     	String modelName = (String)request.getAttribute("modelName");
     	String name = (String)request.getAttribute("name");
     	String phone = (String)request.getAttribute("phone");
@@ -30,7 +29,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/assets/bootstrap-icons.css">
 
     <!-- CSS Front Template -->
-    <link rel="stylesheet" href="assets/theme.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/view/assets/theme.min.css">
       <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -107,11 +106,12 @@
                             <div class="mb-4">
 
                                 <label class="form-label" for="reservation_date"> 상담 가능한 시간 </label>
-                                <select name="date" id="reservation_date" class="form-select form-select-lg" aria-label="상담 가능한 시간">
-                                    
+                                <select name="date" id="reservation_date" class="form-select form-select-lg" aria-label="상담 가능한 날짜">
                                     
                                     <option selected>상담 예약 날짜를 골라주세요</option>
                                       <%for(int i = 1 ; i<=14 ; i++) {
+                                    	  Date sysDate = new Date();
+                                      	int nowDate = sysDate.getDate();
                                     	  sysDate.setDate(nowDate+i);
                                       	String format1 = new SimpleDateFormat("yyyy/MM/dd").format(sysDate);
                                       	String format2 = new SimpleDateFormat("MM월 dd일 (EEE)").format(sysDate);
