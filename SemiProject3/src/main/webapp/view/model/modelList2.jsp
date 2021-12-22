@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>전기차 조회</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> ​
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
@@ -307,7 +307,7 @@
         
         .card-pinned {
             position: relative;
-            display: block;
+            display: none;
         }
         
         .col-md-5 {
@@ -511,21 +511,33 @@
 
 <body>
 
-   <%
-      List<EvModelVO> list = (List<EvModelVO>)request.getAttribute("list");
-      PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-      DecimalFormat format = new DecimalFormat("###,###");
-   %>
-   
+	<%
+		List<EvModelVO> list = (List<EvModelVO>)request.getAttribute("list");
+		PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+		DecimalFormat format = new DecimalFormat("###,###");
+	%>
+	
     <!-- 메인 페이지 시작-->
     <div class="wrap background">
         <div class="main_page">
-            <form>            
+            <form>
                 <div class="main_left_box">
                     <div class="main_left_top">
                         <em id="topCountry">전기차</em>
+                        <span>총 차량 대수는 OOO 입니다.</span>
+                        <a onclick="box.SearchReset();"></a>
                     </div>
                     <ul>
+                        <li class>
+                            <span>제조사
+                                <!-- ::after -->
+                            </span>
+                        </li>
+                        <li class>
+                            <span>모델이름
+                                <!-- ::after -->
+                            </span>
+                        </li>
                         <li class>
                             <span>
                                 <!-- Search -->
@@ -537,6 +549,10 @@
                                                 <span class="input-group-prepend input-group-text">
                                                     <span>차량검색</span>
                             </span>
+                            <input type="text" class="form-control" id="searchAppsForm" placeholder="제조사/모델명 검색해주세요." aria-label="Search for apps">
+                            <button type="button" class="btn btn-primary myBtn">
+                                                    <i class="bi-arrow-right"></i>
+                                                </button>
                 </div>
         </div>
     </div>
@@ -545,14 +561,6 @@
     <!-- End Search -->
     </span>
     </li>
-    
-    <form action="<%=request.getContextPath()%>/model/SearchView" method="get">
-		<input type="text" name="keyword" class="form-control" id="searchAppsForm" placeholder="제조사/모델명 검색해주세요." aria-label="Search for apps">
-		<button type="submit" class="btn btn-primary myBtn">
-			<i class="bi-arrow-right"></i>
-		</button>
-	</form>
-    
 
     <li class=""></li>
     <li class=""></li>
@@ -572,11 +580,11 @@
         </div>
         <div class="main_right_sort">
             <div class="main_right_array">
-               
-               <% String path1 = request.getContextPath()+"/model/view"; %>
-               <% String path2 = request.getContextPath()+"/model/view/modelListhPrice"; %>
-               <% String path3 = request.getContextPath()+"/model/view/modelListrPrice"; %>
-               
+            	
+            	<% String path1 = request.getContextPath()+"/model/view/modelListreadCount"; %>
+            	<% String path2 = request.getContextPath()+"/model/view/modelListhPrice"; %>
+            	<% String path3 = request.getContextPath()+"/model/view/modelListrPrice"; %>
+            	
                 <a class="on" href=<%=path1 %> onclick="win.GoOrderType(this, '조회순')">조회순</a>
                 <a class="on" href=<%=path2 %> onclick="win.GoOrderType(this, '최고가순')">가격높은순</a>
                 <a class="on" href=<%=path3 %> onclick="win.GoOrderType(this, '최저가순')">가격낮은순</a>
@@ -595,15 +603,14 @@
                         <p style="background-image:url('<%= request.getContextPath() %>/resources/image/<%= model.getImage_1()%>');"></p>
                         <dl>
                             <dt>
-                               <strong>
-                                  <%= model.getModelName() %> <br>
-                                  <%= model.getCompany() %> <br>
-                                  <%= format.format(model.getPrice())%>원 <br>
-                               </strong>
+                            	<strong>
+                            		<%= model.getModelName() %> / <%=model.getModelSub() %> <br>
+                            		<%= model.getCompany() %> <br>
+                            		<%= format.format(model.getPrice())%>원 <br>
+                            	</strong>
                             </dt>
                             <dd>
-                                <button id="<%=model.getModelName()%>" class="btn btn-primary btntransition" 
-                                onclick="modalOpen('<%=i++%>','<%=model.getModelName()%>','<%=model.getModelSub()%>')">상세보기</button>
+                                <button id="<%=model.getModelName()%>" class="btn btn-primary btntransition" onclick="modalOpen('<%=model.getModelName().hashCode()%>')">상세보기</button>
                             </dd>
                         </dl>
                     </a>
@@ -614,36 +621,36 @@
         </div>
 
         <div class="paging">
-           <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=1'">&lt;&lt;</button>
-         
-         <!-- 이전 페이지로 -->
-         <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getPrvePage() %>'">&lt;</button>
+        	<button onclick="location.href='<%= request.getContextPath() %>/model/view?page=1'">&lt;&lt;</button>
+			
+			<!-- 이전 페이지로 -->
+			<button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getPrvePage() %>'">&lt;</button>
 
-         <!--  10개 페이지 목록 -->
-         <% for (int p = pageInfo.getStartPage(); p <= pageInfo.getEndPage(); p++) { %>
-            <% if(p == pageInfo.getCurrentPage()) { %>
-               <button disabled><%= p %></button>
-            <% } else { %>
-               <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= p %>'"><%= p %></button>
-            <% } %>
-         <% } %>
-         
-         <!-- 다음 페이지로 -->
-         <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getNextPage()%>'">&gt;</button>
-         
-         <!-- 맨 끝으로 -->
-         <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getMaxPage() %>'">&gt;&gt;</button>
+			<!--  10개 페이지 목록 -->
+			<% for (int p = pageInfo.getStartPage(); p <= pageInfo.getEndPage(); p++) { %>
+				<% if(p == pageInfo.getCurrentPage()) { %>
+					<button disabled><%= p %></button>
+				<% } else { %>
+					<button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= p %>'"><%= p %></button>
+				<% } %>
+			<% } %>
+			
+			<!-- 다음 페이지로 -->
+			<button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getNextPage()%>'">&gt;</button>
+			
+			<!-- 맨 끝으로 -->
+			<button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getMaxPage() %>'">&gt;&gt;</button>
         </div>
 </section>
     </div>
     </div>
     </div>
 
-   
+	
  <% int j = 1;
  for(EvModelVO model : list){ %>
     <!-- The Modal -->
-    <div id="<%=j++%>" class="modal">
+    <div id="<%=model.getModelName().hashCode()%>" class="modal">
 
         <!-- Modal content -->
         <div class="modal-content">
@@ -656,7 +663,19 @@
                     <div class="col-md-7 mb-7 mb-md-0">
                         <div class="pe-md-4">
                             <div class="card-pinned">
-                                <img class="card-img" src="<%= request.getContextPath() %>/resources/image/<%= model.getImage_1()%>" alt="전기차 사진">
+                                <img class="card-img <%= model.getModelName().hashCode()%>" src="<%= request.getContextPath() %>/resources/image/<%= model.getImage_1()%>" alt="전기차 사진1">
+                            </div>
+                            <div class="card-pinned">
+                                <img class="card-img <%= model.getModelName().hashCode()%>" src="<%= request.getContextPath() %>/resources/image/<%= model.getImage_2()%>" alt="전기차 사진2">
+                            </div>
+                            <div class="card-pinned">
+                                <img class="card-img <%= model.getModelName().hashCode()%>" src="<%= request.getContextPath() %>/resources/image/<%= model.getImage_3()%>" alt="전기차 사진3">
+                            </div>
+                            <div class="card-pinned">
+                                <img class="card-img <%= model.getModelName().hashCode()%>" src="<%= request.getContextPath() %>/resources/image/<%= model.getImage_4()%>" alt="전기차 사진4">
+                            </div>
+                            <div class="card-pinned">
+                                <img class="card-img <%= model.getModelName().hashCode()%>" src="<%= request.getContextPath() %>/resources/image/<%= model.getImage_5()%>" alt="전기차 사진5">
                             </div>
                         </div>
                     </div>
@@ -666,14 +685,14 @@
                     <div class="col-md-5">
                         <!-- Heading -->
                         <!-- 구분/제조사 -->
-                        <h4 id="car-manu" class="car-manu">[<%=model.getNation() %>] > [<%=model.getCompany() %>]</h4>
+                        <h4 id="car-manu" class="car-manu">[외제] > [테슬라]</h4>
                             <!-- 모델명 -->
                             <h2 id="car-name" class="car-name"><%=model.getModelName() %></h2>
                             <div class="mb-5">
                                 <table class="car-table">
                                     <tr>
                                         <th>상세모델명</th>
-                                        <td><%=model.getModelName() %> / <%=model.getModelSub() %></td>
+                                        <td><%=model.getModelName() %></td>
                                     </tr>
                                     <tr>
                                         <th>출시가</th>
@@ -681,31 +700,31 @@
                                     </tr>
                                     <tr>
                                         <th>연비</th>
-                                        <td><%=model.getFuel() %></td>
+                                        <td>자동 6.1 km/kWh</td>
                                     </tr>
                                     <tr>
                                         <th>1회 충전 주행가능 거리</th>
-                                        <td><%=model.getDistance() %></td>
+                                        <td> 383Km </td>
                                     </tr>
                                     <tr>
                                         <th>에너지 용량</th>
-                                        <td><%=model.getEnergy() %></td>
+                                        <td>50.0kWh</td>
                                     </tr>
                                     <tr>
                                         <th>모터최대출력</th>
-                                        <td><%=model.getMotor() %></td>
+                                        <td>211.0Kw</td>
                                     </tr>
                                     <tr>
                                         <th>변속기</th>
-                                        <td><%=model.getTransM() %></td>
+                                        <td>자동</td>
                                     </tr>
                                     <tr>
                                         <th>구동방식</th>
-                                        <td><%=model.getDrive() %></td>
+                                        <td> 후륜구동</td>
                                     </tr>
                                     <tr>
                                         <th>승차인원</th>
-                                        <td><%=model.getPerson() %></td>
+                                        <td> 5인승</td>
                                     </tr>
                                 </table>
                             </div>
@@ -729,69 +748,37 @@
 <%}%>
 
     <script>
-        /* 상세보기 처리기능 */
-
-        // Get the modal
-        
-
-        // Get the button that opens the modaBl
-        // var btn = document.getElementById("myBtn");
-
-        // Get the <span> element that closes the modal
-        
-
-        // When the user clicks the button, open the modal 
-        // btn.onclick = function() {
-        //     modal.style.display = "block";
-        // }
-
-        
-        function modalOpen(model,modelName,modelSub){
-            var modal = document.getElementById(''+model);
+        function modalOpen(modelName) {
+            var modal = document.getElementById(''+modelName);
             modal.style.display = "block";
-            
-            var Params = modelName+","+modelSub;
-            
-            <%--alert(Params);--%>
-            
-            $.ajax({
-            	type: "GET",
-            	
-            	url: "<%=request.getContextPath()%>/model/updateReadCount",
-            	
-            	data:{
-            		Params
-            	},
-            	
-            	dataType:"text",
-            	
-            	success:function(data){
-            	},
-            })
-            
+
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
+                showSlides();
+                setInterval(   	  showSlides(modelName)
+                , 200);
             }
-            
-            $(".close").click(function(){
+
+            $(".close").click(function() {
                 modal.style.display = "none";
             })
-            
         }
-
-      
-
-        // When the user clicks on <span> (x), closwe the modal
         
-
-        // When the user clicks anywhere outside of the modal, close it
-        
-            /* 상세보기 처리기능 종료 */
+        var slideIndex = 0;
+        showSlides = function(modelName) {
+            var slides = document.getElementsByClassName(modelName);
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none ";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
     </script>
-
-
 </body>
-
 </html>

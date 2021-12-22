@@ -4,9 +4,10 @@ import java.util.Date;
 
 public class EvModelVO {
 	
+	private int rowNum;
 	private String modelName;
 	private String modelSub;
-	private String price;
+	private int price;
 	private String fuel;
 	private String person;
 	private String drive;
@@ -32,7 +33,7 @@ public class EvModelVO {
 	}
 	
 		
-	public EvModelVO(String modelName, String modelSub, String price, String fuel, String person, String drive,
+	public EvModelVO(String modelName, String modelSub, int price, String fuel, String person, String drive,
 			String transM, String distance, String energy, String motor, String company, String nation, String image_1,
 			String image_2, String image_3, String image_4, String image_5) {
 		super();
@@ -55,9 +56,12 @@ public class EvModelVO {
 		this.image_5 = image_5;
 	}
 
-	public EvModelVO(String modelName, String modelSub, String price, String fuel, String person, String drive,
-			String transM, String distance, String energy, String motor, String company, String nation, String image_1,
-			String image_2, String image_3, String image_4, String image_5, int readcount, Date createDate) {
+	public EvModelVO(int rowNum, String modelName, String modelSub, int price, String fuel, String person,
+			String drive, String transM, String distance, String energy, String motor, String company, String nation,
+			String image_1, String image_2, String image_3, String image_4, String image_5, int readcount,
+			Date createDate) {
+		super();
+		this.rowNum = rowNum;
 		this.modelName = modelName;
 		this.modelSub = modelSub;
 		this.price = price;
@@ -76,7 +80,16 @@ public class EvModelVO {
 		this.image_4 = image_4;
 		this.image_5 = image_5;
 		this.readcount = readcount;
-		this.setCreateDate(createDate);
+		this.createDate = createDate;
+	}
+	
+	
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
 	}
 
 	public String getModelName() {
@@ -95,11 +108,11 @@ public class EvModelVO {
 		this.modelSub = modelSub;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -233,12 +246,14 @@ public class EvModelVO {
 
 	@Override
 	public String toString() {
-		return "EvModelVO [modelName=" + modelName + ", modelSub=" + modelSub + ", price=" + price + ", fuel=" + fuel
-				+ ", person=" + person + ", drive=" + drive + ", transM=" + transM + ", distance=" + distance
-				+ ", energy=" + energy + ", motor=" + motor + ", company=" + company + ", nation=" + nation
-				+ ", image_1=" + image_1 + ", image_2=" + image_2 + ", image_3=" + image_3 + ", image_4=" + image_4
-				+ ", image_5=" + image_5 + ", readcount=" + readcount + ", createDate=" + createDate + "]";
+		return "EvModelVO [rowNum=" + rowNum + ", modelName=" + modelName + ", modelSub=" + modelSub + ", price="
+				+ price + ", fuel=" + fuel + ", person=" + person + ", drive=" + drive + ", transM=" + transM
+				+ ", distance=" + distance + ", energy=" + energy + ", motor=" + motor + ", company=" + company
+				+ ", nation=" + nation + ", image_1=" + image_1 + ", image_2=" + image_2 + ", image_3=" + image_3
+				+ ", image_4=" + image_4 + ", image_5=" + image_5 + ", readcount=" + readcount + ", createDate="
+				+ createDate + "]";
 	}
+	
 	
 	
 }

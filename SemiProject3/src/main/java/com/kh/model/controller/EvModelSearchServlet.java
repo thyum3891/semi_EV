@@ -13,8 +13,8 @@ import com.kh.common.util.PageInfo;
 import com.kh.model.service.EvModelService;
 import com.kh.semi.vo.EvModelVO;
 
-@WebServlet("/model/view")
-public class EvModelServlet extends HttpServlet{
+@WebServlet("/model/SearchView")
+public class EvModelSearchServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	EvModelService service = new EvModelService();
@@ -26,23 +26,22 @@ public class EvModelServlet extends HttpServlet{
 		int listCount = 0;
 		PageInfo pageInfo = null;
 		List<EvModelVO> list = null;
+		String keyword = req.getParameter("keyword");
 		
 		try {
 			page = Integer.parseInt(req.getParameter("page"));
 		} catch (Exception e) {}
 		
+		System.out.println("======="+keyword);
+		System.out.println("======="+page);
+		
 		listCount = service.getModel(); //전기차 데이터 count		
 		pageInfo = new PageInfo(page, 10, listCount, 12); //페이징
-		list = service.getModel(pageInfo); //페이징에 따른 데이터 추출
-//		System.out.println(list);
+		list = service.getModelSearch(pageInfo,keyword);
 		
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", pageInfo);
-		req.getRequestDispatcher("/view/model/modelList.jsp").forward(req, resp);
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
+		req.getRequestDispatcher("/view/model/modelListSearch.jsp").forward(req, resp);
+
 	}
 }

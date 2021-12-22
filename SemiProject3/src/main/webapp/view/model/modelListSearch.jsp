@@ -614,25 +614,25 @@
         </div>
 
         <div class="paging">
-           <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=1'">&lt;&lt;</button>
+           <button onclick="location.href='<%= request.getContextPath() %>/model/SearchView?page=1'">&lt;&lt;</button>
          
          <!-- 이전 페이지로 -->
-         <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getPrvePage() %>'">&lt;</button>
+         <button onclick="location.href='<%= request.getContextPath() %>/model/SearchView?page=<%= pageInfo.getPrvePage() %>'">&lt;</button>
 
          <!--  10개 페이지 목록 -->
          <% for (int p = pageInfo.getStartPage(); p <= pageInfo.getEndPage(); p++) { %>
             <% if(p == pageInfo.getCurrentPage()) { %>
                <button disabled><%= p %></button>
             <% } else { %>
-               <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= p %>'"><%= p %></button>
+               <button onclick="location.href='<%= request.getContextPath() %>/model/SearchView?page=<%= p %>'"><%= p %></button>
             <% } %>
          <% } %>
          
          <!-- 다음 페이지로 -->
-         <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getNextPage()%>'">&gt;</button>
+         <button onclick="location.href='<%= request.getContextPath() %>/model/SearchView?page=<%= pageInfo.getNextPage()%>'">&gt;</button>
          
          <!-- 맨 끝으로 -->
-         <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getMaxPage() %>'">&gt;&gt;</button>
+         <button onclick="location.href='<%= request.getContextPath() %>/model/SearchView?page=<%= pageInfo.getMaxPage() %>'">&gt;&gt;</button>
         </div>
 </section>
     </div>

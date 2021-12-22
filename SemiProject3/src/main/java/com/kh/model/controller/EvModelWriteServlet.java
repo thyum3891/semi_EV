@@ -53,7 +53,7 @@ public class EvModelWriteServlet extends HttpServlet{
 			String name = mr.getParameter("blogContactsModelName");
 			model.setModelName(name);
 			model.setModelSub(mr.getParameter("blogContactsModelSub"));
-			model.setPrice(mr.getParameter("blogContactsPrice"));
+			model.setPrice(Integer.parseInt(mr.getParameter("blogContactsPrice")));
 			model.setFuel(mr.getParameter("blogContactsFuel"));
 			model.setPerson(mr.getParameter("blogContactsPerson"));
 			model.setDrive(mr.getParameter("blogContactsDrive"));

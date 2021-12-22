@@ -13,8 +13,8 @@ import com.kh.common.util.PageInfo;
 import com.kh.model.service.EvModelService;
 import com.kh.semi.vo.EvModelVO;
 
-@WebServlet("/model/view")
-public class EvModelServlet extends HttpServlet{
+@WebServlet("/model/view/modelListhPrice")
+public class EvModelhPriceServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	EvModelService service = new EvModelService();
@@ -33,12 +33,12 @@ public class EvModelServlet extends HttpServlet{
 		
 		listCount = service.getModel(); //전기차 데이터 count		
 		pageInfo = new PageInfo(page, 10, listCount, 12); //페이징
-		list = service.getModel(pageInfo); //페이징에 따른 데이터 추출
+		list = service.getModelhPrice(pageInfo); //페이징에 따른 데이터 추출
 //		System.out.println(list);
 		
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", pageInfo);
-		req.getRequestDispatcher("/view/model/modelList.jsp").forward(req, resp);
+		req.getRequestDispatcher("/view/model/modelListhPrice.jsp").forward(req, resp);
 	}
 	
 	@Override

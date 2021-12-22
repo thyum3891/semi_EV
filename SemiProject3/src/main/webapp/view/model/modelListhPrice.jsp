@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>전기차 조회</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> ​
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
@@ -511,16 +511,16 @@
 
 <body>
 
-   <%
-      List<EvModelVO> list = (List<EvModelVO>)request.getAttribute("list");
-      PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-      DecimalFormat format = new DecimalFormat("###,###");
-   %>
-   
+	<%
+		List<EvModelVO> list = (List<EvModelVO>)request.getAttribute("list");
+		PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+		DecimalFormat format = new DecimalFormat("###,###");
+	%>
+	
     <!-- 메인 페이지 시작-->
     <div class="wrap background">
         <div class="main_page">
-            <form>            
+            <form>
                 <div class="main_left_box">
                     <div class="main_left_top">
                         <em id="topCountry">전기차</em>
@@ -552,7 +552,6 @@
 			<i class="bi-arrow-right"></i>
 		</button>
 	</form>
-    
 
     <li class=""></li>
     <li class=""></li>
@@ -572,11 +571,11 @@
         </div>
         <div class="main_right_sort">
             <div class="main_right_array">
-               
-               <% String path1 = request.getContextPath()+"/model/view"; %>
-               <% String path2 = request.getContextPath()+"/model/view/modelListhPrice"; %>
-               <% String path3 = request.getContextPath()+"/model/view/modelListrPrice"; %>
-               
+            	
+            	<% String path1 = request.getContextPath()+"/model/view"; %>
+            	<% String path2 = request.getContextPath()+"/model/view/modelListhPrice"; %>
+            	<% String path3 = request.getContextPath()+"/model/view/modelListrPrice"; %>
+            	
                 <a class="on" href=<%=path1 %> onclick="win.GoOrderType(this, '조회순')">조회순</a>
                 <a class="on" href=<%=path2 %> onclick="win.GoOrderType(this, '최고가순')">가격높은순</a>
                 <a class="on" href=<%=path3 %> onclick="win.GoOrderType(this, '최저가순')">가격낮은순</a>
@@ -595,11 +594,11 @@
                         <p style="background-image:url('<%= request.getContextPath() %>/resources/image/<%= model.getImage_1()%>');"></p>
                         <dl>
                             <dt>
-                               <strong>
-                                  <%= model.getModelName() %> <br>
-                                  <%= model.getCompany() %> <br>
-                                  <%= format.format(model.getPrice())%>원 <br>
-                               </strong>
+                            	<strong>
+                            		<%= model.getModelName() %>  <br>
+                            		<%= model.getCompany() %> <br>
+                            		<%= format.format(model.getPrice())%>원 <br>
+                            	</strong>
                             </dt>
                             <dd>
                                 <button id="<%=model.getModelName()%>" class="btn btn-primary btntransition" 
@@ -614,32 +613,32 @@
         </div>
 
         <div class="paging">
-           <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=1'">&lt;&lt;</button>
-         
-         <!-- 이전 페이지로 -->
-         <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getPrvePage() %>'">&lt;</button>
+        	<button onclick="location.href='<%= request.getContextPath() %>/model/view/modelListhPrice?page=1'">&lt;&lt;</button>
+			
+			<!-- 이전 페이지로 -->
+			<button onclick="location.href='<%= request.getContextPath() %>/model/view/modelListhPrice?page=<%= pageInfo.getPrvePage() %>'">&lt;</button>
 
-         <!--  10개 페이지 목록 -->
-         <% for (int p = pageInfo.getStartPage(); p <= pageInfo.getEndPage(); p++) { %>
-            <% if(p == pageInfo.getCurrentPage()) { %>
-               <button disabled><%= p %></button>
-            <% } else { %>
-               <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= p %>'"><%= p %></button>
-            <% } %>
-         <% } %>
-         
-         <!-- 다음 페이지로 -->
-         <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getNextPage()%>'">&gt;</button>
-         
-         <!-- 맨 끝으로 -->
-         <button onclick="location.href='<%= request.getContextPath() %>/model/view?page=<%= pageInfo.getMaxPage() %>'">&gt;&gt;</button>
+			<!--  10개 페이지 목록 -->
+			<% for (int p = pageInfo.getStartPage(); p <= pageInfo.getEndPage(); p++) { %>
+				<% if(p == pageInfo.getCurrentPage()) { %>
+					<button disabled><%= p %></button>
+				<% } else { %>
+					<button onclick="location.href='<%= request.getContextPath() %>/model/view/modelListhPrice?page=<%= p %>'"><%= p %></button>
+				<% } %>
+			<% } %>
+			
+			<!-- 다음 페이지로 -->
+			<button onclick="location.href='<%= request.getContextPath() %>/model/view/modelListhPrice?page=<%= pageInfo.getNextPage()%>'">&gt;</button>
+			
+			<!-- 맨 끝으로 -->
+			<button onclick="location.href='<%= request.getContextPath() %>/model/view/modelListhPrice?page=<%= pageInfo.getMaxPage() %>'">&gt;&gt;</button>
         </div>
 </section>
     </div>
     </div>
     </div>
 
-   
+	
  <% int j = 1;
  for(EvModelVO model : list){ %>
     <!-- The Modal -->
@@ -780,6 +779,8 @@
             })
             
         }
+        
+        
 
       
 
