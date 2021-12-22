@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 <script src="jquery-3.6.0.min.js"></script>
  <style>
-        body {
+   body {
             background-color: white;
+            font-family: 'Noto Sans KR', sans-serif;
         }
         /*가로 800px 이상일때*/
         
@@ -18,20 +19,27 @@
                 margin: auto;
             }
             /* 로고설정*/
-            .image {
+            /* .image {
                 margin-top: 20px;
                 height: 44px;
                 padding: 30px;
-            }
+            } */
+        }
+        
+        .image {
+            width: 300px;
+            height: 200px;
+            margin-top: 30px;
+            margin-right: 75px;
         }
         
         #signup-text {
-            margin-top: 20px;
-            padding: 10px;
+            margin-top: 10px;
         }
         
-        #signup-text p {
-            font-size: 40px;
+        #signup-text h1 {
+            font-size: 30px;
+            letter-spacing: 4px;
         }
         /*회원가입 부분*/
         
@@ -58,7 +66,7 @@
         }
         
         .signup-input:hover {
-            border: solid 3px green;
+            border: solid 3px #3bb44a;
         }
         
         #signup-id,
@@ -118,7 +126,7 @@
             line-height: 55px;
             margin: 50px 0px 50px 0px;
             border: solid 1px rgba(0, 0, 0, .1);
-            background-color: green;
+            background-color: #3bb44a;
             color: #fff;
             cursor: pointer;
         }
@@ -126,7 +134,7 @@
         
         #signupSubmit {
             width: 100px;
-            background-color: green;
+            background-color: #3bb44a;
             border: none;
             color: #fff;
             font-size: 18px;
@@ -136,7 +144,7 @@
         
         #emailCheck {
             width: 200px;
-            background-color: green;
+            background-color: #3bb44a;
             border-radius: 10px;
             border: none;
             color: #fff;
@@ -155,7 +163,7 @@
         <header>
             <!--로고-->
             <div class="logo">
-                <a href="index.html" title="네이버 홈페이지"><img src="<%=request.getContextPath()%>/view/resources/img/logo_last.png" style=" width: 135px;height: 80px;" class="image" alt="로고사진"></a>
+                <a href="index.html" title="네이버 홈페이지"><img src="<%=request.getContextPath()%>/view/resources/img/logo_last.png"  class="image" alt="로고사진"></a>
             </div>
             <div id="signup-text">
                 <p>회 원 가 입</p>

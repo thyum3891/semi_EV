@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 <script src="jquery-3.6.0.min.js"></script>
     <style>
-        body {
+   body {
             background-color: white;
+            font-family: 'Noto Sans KR', sans-serif;
         }
         
         a {
@@ -27,10 +28,10 @@
         /* 로고설정*/
         
         .image {
-            height: 32px;
-            padding: 20px;
+            width: 300px;
+            height: 200px;
             margin-top: 30px;
-            margin-bottom: 30px;
+            margin-right: 70px;
         }
         
         .login_gubun {
@@ -104,11 +105,11 @@
                 margin: auto;
             }
             /* 로고설정*/
-            .image {
+            /* .image {
                 margin-top: 40px;
                 height: 44px;
                 padding: 20px;
-            }
+            } */
         }
     </style>
 </head>
@@ -120,7 +121,7 @@
         <header>
             <!-- 로고 이미지-->
             <div class="logo">
-                <a href="<%=request.getContextPath()%>" target="_blank" title="메인 홈페이지"><img src="<%=request.getContextPath()%>/view/resources/img/logo_last.png" style=" width: 135px;height: 80px;" class="image" alt="로고사진"></a>
+                <a href="<%=request.getContextPath()%>" target="_blank" title="메인 홈페이지"><img src="<%=request.getContextPath()%>/view/resources/img/logo_last.png"  class="image" alt="로고사진"></a>
             </div>
             <h1>로그인 </h1>
         </header>
@@ -128,7 +129,17 @@
         <!--로그인 부분-->
         <section class="login-wrap">
             <form id="loginForm" action="<%=request.getContextPath() %>/login" method="post">
-                
+                <!-- 관리자, 회원 구분 -->
+                <div class="login_gubun">
+                    <div class="login_gubun_cont">
+                        <input type="radio" id="member_flag_admin" name="member_flag" checked="checked" value="T">
+                        <label for="member_flag_admin" class="container">관리자
+                    </label>
+                        <input type="radio" id="member_flag_user" name="member_flag" value="U">
+                        <label for="member_flag_user" class="container">회원
+                    </label>
+                    </div>
+                </div>
 
                 <div class="login-id-wrap">
                     <input id="input-id" name="userId" placeholder="이메일(아이디)를 입력하세요" type="text" required></input>
@@ -139,9 +150,8 @@
                 <div class="login-btn-wrap">
                     <button type="submit" id="login-btn" >로그인</button>
                 </div>
-                
                 <div class="enroll-btn-wrap">
-                   <button type="button" id="enroll-btn" onclick="location.href='<%=request.getContextPath() %>/view/enroll.jsp'">회원가입</button>
+                    <button id="enroll-btn" onclick="location.href=<%=request.getContextPath() %>/enroll.jsp'">회원가입</button>
                 </div>
             </form>
         </section>
