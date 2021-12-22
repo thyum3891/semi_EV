@@ -8,12 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.kh.common.util.PageInfo;
-import com.kh.map.service.MemberService;
 import com.kh.news.service.NewsService;
-import com.kh.semi.vo.MemberVO;
 import com.kh.semi.vo.news;
 
 @WebServlet("/view/news")

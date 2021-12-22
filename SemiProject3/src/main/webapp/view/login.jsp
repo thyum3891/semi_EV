@@ -128,17 +128,7 @@
         <!--로그인 부분-->
         <section class="login-wrap">
             <form id="loginForm" action="<%=request.getContextPath() %>/login" method="post">
-                <!-- 관리자, 회원 구분 -->
-                <div class="login_gubun">
-                    <div class="login_gubun_cont">
-                        <input type="radio" id="member_flag_admin" name="member_flag" checked="checked" value="T">
-                        <label for="member_flag_admin" class="container">관리자
-                    </label>
-                        <input type="radio" id="member_flag_user" name="member_flag" value="U">
-                        <label for="member_flag_user" class="container">회원
-                    </label>
-                    </div>
-                </div>
+                
 
                 <div class="login-id-wrap">
                     <input id="input-id" name="userId" placeholder="이메일(아이디)를 입력하세요" type="text" required></input>
@@ -149,8 +139,9 @@
                 <div class="login-btn-wrap">
                     <button type="submit" id="login-btn" >로그인</button>
                 </div>
+                
                 <div class="enroll-btn-wrap">
-                    <button id="enroll-btn" onclick="location.href=<%=request.getContextPath() %>/enroll.jsp'">회원가입</button>
+                   <button type="button" id="enroll-btn" onclick="location.href='<%=request.getContextPath() %>/view/enroll.jsp'">회원가입</button>
                 </div>
             </form>
         </section>

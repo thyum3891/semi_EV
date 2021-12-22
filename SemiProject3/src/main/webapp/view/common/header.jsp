@@ -188,9 +188,9 @@ MemberVO loginMember = (MemberVO)session.getAttribute("loginMember");
                         </ul>
                     </li>
                     <li>
-                        <a class="menuB" href="#">뉴스</a>
+                        <a class="menuB" href="<%=request.getContextPath()%>/view/news">뉴스</a>
                         <ul class="submenu">
-                            <li><a href="#">전기차뉴스</a></li>
+                            <li><a href="<%=request.getContextPath()%>/view/news">전기차뉴스</a></li>
                         </ul>
                     </li>
                     <li>
@@ -198,7 +198,7 @@ MemberVO loginMember = (MemberVO)session.getAttribute("loginMember");
                         <ul class="submenu">
                             <li><a href="#">공지사항</a></li>
                             <li><a href="#">게시판</a></li>
-                            <li><a href="#">이벤트</a></li>
+                            <li><a href="<%=request.getContextPath()%>/view/events/eventList.jsp">이벤트</a></li>
                         </ul>
                     </li>
                 </ul>
