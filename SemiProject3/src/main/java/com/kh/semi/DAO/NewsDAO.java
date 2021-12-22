@@ -2,6 +2,7 @@ package com.kh.semi.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,14 +10,95 @@ import java.util.List;
 import java.util.Map;
 import static common.JDBCTemplate.*;
 
+import com.kh.common.util.PageInfo;
 import com.kh.semi.api.ApiExamSearchNews;
 import com.kh.semi.vo.news;
 
-public class newsDAO {
+public class NewsDAO {
 
 	Connection conn = null;
+	
+	// select
+	public List<news> sellectAll(Connection conn, PageInfo pageInfo, String keyword) {
 
-	public newsDAO() {
+		List<news> newsList = new ArrayList<news>();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		if(keyword==null) {
+			keyword = "";
+		}
+		String sql = "SELECT * FROM "
+				+ "(SELECT ROWNUM NUM, n.* FROM "
+				+ "(SELECT * FROM  NEWS_API WHERE title like ? or description like ?) n) "
+				+ "WHERE NUM BETWEEN ? AND ?";
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, "%"+keyword+"%");
+				pstmt.setString(2, "%"+keyword+"%");
+				pstmt.setInt(3, pageInfo.getStartPage());
+				pstmt.setInt(4, pageInfo.getEndPage());
+				
+				rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				news news_api = new news();
+				news_api.setTitle(rs.getString("title"));
+				news_api.setOriginallink(rs.getString("originallink"));
+				news_api.setLink(rs.getString("Link"));
+				news_api.setDescription(rs.getString("description"));
+				news_api.setPubDate(rs.getString("PUBDATE"));
+
+				newsList.add(news_api);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+			close(conn);
+		}
+
+		return newsList;
+
+	}
+	public int newsCount(Connection conn) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT count(*) FROM  NEWS_API";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			
+			result = rs.getInt(1);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+			close(conn);
+		}
+		
+		return result;
+		
+	}
+
+
+	public NewsDAO() {
 		try {
 			if (conn != null) {
 				close(conn);
@@ -193,4 +275,5 @@ public class newsDAO {
 		}
 		return -1;
 	}
+
 }
