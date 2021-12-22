@@ -99,7 +99,7 @@
                             <h3 class="card-title">오토플러스 인천 시승권 응모하기</h3>
                         </div>
                     </a>
-                    <!-- End Card -->
+                    <!-- End Cardds -->
                 </div>
                 <!-- End Col -->
 
