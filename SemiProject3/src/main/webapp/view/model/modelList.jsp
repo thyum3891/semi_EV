@@ -711,7 +711,7 @@
                             </div>
                             <!-- End Heading -->
                             <div class="d-grid mb-4">
-                                <button type="button" class="btn btn-primary btntransition form-btn" style="height: 50px; width: 100%;" onclick="location.href='CounselingForm.html';">구매
+                                <button type="button" class="btn btn-primary btntransition form-btn" style="height: 50px; width: 100%;" onclick="location.href='<%=request.getContextPath()%>/counseling/request?modelName=<%=model.getModelName()%>';">구매
                                     상담 신청</button>
                             </div>
 

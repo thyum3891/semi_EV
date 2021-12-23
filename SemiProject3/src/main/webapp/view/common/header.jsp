@@ -172,10 +172,10 @@ MemberVO loginMember = (MemberVO)session.getAttribute("loginMember");
                     <li>
                         <a class="menuB" href="#">전기차</a>
                         <ul class="submenu">
-                            <li><a href="<%=request.getContextPath()%>/view/model/view.jsp">전기차 조회</a></li>
+                            <li><a href="<%=request.getContextPath()%>/model/view">전기차 조회</a></li>
                             <!-- 전기차 등록은 관리자로 로그인할 경우에만 보이게끔 하기 -->
                             <%if(loginMember!=null && loginMember.getRole().equals("ADMIN")) {%>
-                            <li><a href="<%=request.getContextPath()%>/view/model/write.jsp">전기차 등록</a></li>
+                            <li><a href="<%=request.getContextPath()%>/model/write">전기차 등록</a></li>
                             <li><a href="<%=request.getContextPath()%>/counseling/list/inner">상담신청자 관리</a></li>
                             <%}%>
                         </ul>

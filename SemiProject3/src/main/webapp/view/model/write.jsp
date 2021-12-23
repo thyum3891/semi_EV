@@ -14,12 +14,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="../assets/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/hs-mega-menu.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/view/assets/bootstrap-icons.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/view/assets/hs-mega-menu.css">
 
     <!-- CSS Front Template -->
-    <link rel="stylesheet" href="../assets/theme.min.css">
-    <link rel="stylesheet" href="../assets/snippets.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/view/assets/theme.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/view/assets/snippets.min.css">
     
     <style>
         .btn-lg:hover,
@@ -90,9 +90,9 @@
                                 <span class="d-block">
                                     <label class="form-label" for="blogContactsFormDrive"><b>구동방식</b></label><br>
                                     <input type="radio" name="blogContactsDrive" id="blogContactsFormDrive1" value="전륜구동" checked>
-                                    <label for="blogContactsFormDrive">전륜구동</label> &nbsp &nbsp
+                                    <label for="blogContactsFormDrive">전륜구동</label> 
                                     <input type="radio" name="blogContactsDrive" id="blogContactsFormDrive2" value="후륜구동">
-                                    <label for="blogContactsFormDrive">후륜구동</label> &nbsp &nbsp
+                                    <label for="blogContactsFormDrive">후륜구동</label> 
                                     <input type="radio" name="blogContactsDrive" id="blogContactsFormDrive3" value="4륜구동">
                                     <label for="blogContactsFormDrive">4륜구동</label>
                                 </span>
@@ -100,13 +100,13 @@
                                 <span class="d-block">
                                     <label class="form-label" for="blogContactsFormTransM"><b>변속기어</b></label><br>
                                     <input type="radio" name="blogContactsTransM" id="blogContactsFormTransM1" value="자동" checked>
-                                    <label for="blogContactsFormDrive">자동</label> &nbsp &nbsp
+                                    <label for="blogContactsFormDrive">자동</label> 
                                     <input type="radio" name="blogContactsTransM" id="blogContactsFormTransM2" value="수동">
                                     <label for="blogContactsFormDrive">수동</label>
                                 </span>
 
                                 <span class="d-block">
-                                    <label class="form-label" for="blogContactsFormDistance"><b>1회 충전 시 이동 가능 거리<b></label>
+                                    <label class="form-label" for="blogContactsFormDistance"><b> 1회 충전 시 이동 가능 거리 </b></label>
                                     <input type="text" class="form-control form-control-lg" name="blogContactsDistance" id="blogContactsFormDistance" placeholder="Distance" required>
                                 </span>
 
@@ -133,7 +133,7 @@
                                 <span class="d-block">
                                     <label class="form-label" for="blogContactsFormNation"><b>구분</b></label><br>
                                     <input type="radio" name="blogContactsNation" id="blogContactsFormNation1" value="국산" checked>
-                                    <label for="blogContactsFormDrive">국산</label> &nbsp &nbsp
+                                    <label for="blogContactsFormDrive">국산</label> 
                                     <input type="radio" name="blogContactsNation" id="blogContactsFormNation" value="외제">
                                     <label for="blogContactsFormDrive">외제</label>
                                 </span>

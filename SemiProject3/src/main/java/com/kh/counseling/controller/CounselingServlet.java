@@ -27,7 +27,7 @@ public class CounselingServlet extends HttpServlet {
 				return;
 			}
 
-			String carModelName = req.getParameter("modelname");
+			String carModelName = req.getParameter("modelName");
 
 			req.setAttribute("modelName", carModelName);
 			req.setAttribute("name", member.getName());

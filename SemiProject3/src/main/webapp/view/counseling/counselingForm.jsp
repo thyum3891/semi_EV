@@ -42,7 +42,7 @@
             <div class="w-lg-75 mx-auto">
                 <!-- Jobs Link -->
                 <div class="mb-5">
-                    <a class="link" href="carListPage.html">
+                    <a class="link" href="http://localhost/SemiProject2/model/view">
                         <i class="bi-chevron-left small ms-1"></i> 전기차 상세 조회 페이지로
                     </a>
                 </div>
