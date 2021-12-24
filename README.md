@@ -1,0 +1,5 @@
+# semi_EV
+
+KH 2조
+
+SEMI PROJECT - EV PLATFORM
